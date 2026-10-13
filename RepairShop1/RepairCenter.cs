@@ -89,6 +89,11 @@ namespace RepairShop1
             {
                 return _devices.FirstOrDefault(d => d.DeviceId == deviceId);
             }
-        }
+            // إرجاع قائمة الأجهزة الموجودة في مركز الصيانة
+            public IEnumerable<IDevice> GetAllDevices()
+            {
+                return _devices;
+            }
+    }
 
 }

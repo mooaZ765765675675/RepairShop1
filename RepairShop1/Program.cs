@@ -33,6 +33,11 @@ class Program
         Console.WriteLine(
             $"\nTotal repair cost for all devices: {center.CalculateTotalRepairCost():C}");
 
+        
+
+         Console.WriteLine($"Is device ID 'FRG001' valid? {DataValidator.IsValidDeviceId("FRG001")}");
+         Console.WriteLine($"Number of repaired devices: {DataValidator.GetDeviceCountByStatus(center.GetAllDevices(), "Repaired")}");
+
 
         Console.ReadKey();
     }
