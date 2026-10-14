@@ -1,7 +1,8 @@
 ﻿using System;
+using RepairShop1.Interfaces;
 
 
-namespace RepairShop1
+namespace RepairShop1.Models
 {
     //صف مجرد يرث من الواجهة 
     public abstract class Device : IDevice
@@ -26,7 +27,7 @@ namespace RepairShop1
         }
 
         // حدث يتم إطلاقه عند تغيير حالة الجهاز
-        public event Action<string, string> OnStatusChanged;
+        public event Action<string, string>? OnStatusChanged;
 
         // منشئ (Constructor) للفئة المجردة
         public Device(string deviceId, string deviceType)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepairShop1
+namespace RepairShop1.Models
 {
     //   Device فئة الغسالة ترث من الفئة المجردة 
     public class WashingMachine : Device
