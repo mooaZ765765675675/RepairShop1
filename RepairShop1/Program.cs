@@ -40,6 +40,8 @@ namespace RepairShop1
                 Console.WriteLine("3. Update device status");
                 Console.WriteLine("4. Find a device");
                 Console.WriteLine("5. Calculate total repair cost");
+                Console.WriteLine("6. Count devices by status");
+                Console.WriteLine("7. Display total number of devices");
                 Console.WriteLine("0. Exit");
 
                 Console.Write("\nEnter your choice: ");
@@ -65,6 +67,12 @@ namespace RepairShop1
 
                     case "5":
                         CalculateTotalRepairCostOption();
+                        break;
+                    case "6":
+                        CountDevicesByStatusOption();
+                        break;
+                    case "7":
+                        DisplayTotalDevicesOption();
                         break;
 
                     case "0":
@@ -348,6 +356,57 @@ namespace RepairShop1
 
             Console.WriteLine(
                 $"Total repair cost: {totalCost:C}");
+        }
+       
+        // دالة عرض عدد الأجهزة حسب حالة الصيانة
+        static void CountDevicesByStatusOption() 
+        {
+            Console.Clear();
+            Console.WriteLine("--- Count Devices by Status ---");
+
+            Console.WriteLine("1. Waiting for repair");
+            Console.WriteLine("2. Under Inspection");
+            Console.WriteLine("3. Waiting for Spare Parts");
+            Console.WriteLine("4. Under Repair");
+            Console.WriteLine("5. Repaired");
+
+            Console.Write("\nEnter the status number: ");
+            string choice = Console.ReadLine() ?? "";
+
+            string status = choice switch
+            {
+                "1" => "Waiting for repair",
+                "2" => "Under Inspection",
+                "3" => "Waiting for Spare Parts",
+                "4" => "Under Repair",
+                "5" => "Repaired",
+                _ => ""
+            };
+
+            if (status == "")
+            {
+                Console.WriteLine("Invalid status choice.");
+                return;
+            }
+
+            // حساب عدد الأجهزة حسب الحالة المختارة
+            int count = DataValidator.GetDeviceCountByStatus(
+                repairCenter.GetAllDevices(), status);
+
+            Console.WriteLine($"Number of devices with status '{status}': {count}");
+
+            // عرض عدد الأجهزة التي تنتظر الصيانة
+            int pendingCount = DataValidator.TotalPendingDevices(
+                repairCenter.GetAllDevices());
+
+            Console.WriteLine(
+                $"Total devices waiting for repair: {pendingCount}");
+        }
+
+        private static void DisplayTotalDevicesOption()
+        {
+            Console.WriteLine(
+                $"Total number of devices: {RepairCenter.TotalDevices}");
         }
     }
 }

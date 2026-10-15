@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RepairShop1.Interfaces;
 
 namespace RepairShop1.Services
@@ -13,6 +9,8 @@ namespace RepairShop1.Services
     {
         // قائمة لتخزين كائنات الأجهزة، باستخدام الواجهة IDevice لتحقيق تعدد الأشكال
         private readonly List<IDevice> _devices;
+        // خاصية ثابتة لحساب إجمالي عدد الأجهزة في المركز
+        public static int TotalDevices { get; private set; }
 
         public RepairCenter()
         {
@@ -28,6 +26,8 @@ namespace RepairShop1.Services
             }
 
             _devices.Add(device);
+         
+            TotalDevices = _devices.Count;
 
             // الاشتراك في حدث تغيير حالة الجهاز
             device.OnStatusChanged += Device_OnStatusChanged;
